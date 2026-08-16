@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { formatMoney } from "@/lib/format";
+import { ProductImage } from "@/components/ui/ProductImage";
 
 interface Entry {
   slug: string;
@@ -46,15 +46,13 @@ export function RecentlyViewed({ current }: { current: Entry }) {
             className="group rounded-xl2 overflow-hidden bg-white border border-line shadow-soft hover:shadow-pop transition"
           >
             <div className="relative aspect-square bg-cream">
-              {e.image ? (
-                <Image
-                  src={e.image}
-                  alt={e.name}
-                  fill
-                  sizes="(min-width:1024px) 22vw, 45vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              ) : null}
+              <ProductImage
+                src={e.image}
+                alt={e.name}
+                fill
+                sizes="(min-width:1024px) 22vw, 45vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
             </div>
             <div className="p-3">
               <div className="text-sm text-ink line-clamp-1">{e.name}</div>

@@ -5,6 +5,13 @@
 :root {
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+
+  /* Fair Deal — Ghana × Nigeria × China */
+  --fd-green: #0b6b3a;
+  --fd-gold: #f5c518;
+  --fd-crimson: #ce1126;
+  --fd-ivory: #f7f8f4;
+  --fd-ink: #122016;
 }
 
 html,
@@ -50,4 +57,12 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Soft Ghana–Nigeria–China brand wash for key surfaces */
+.fd-brand-wash {
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgba(245, 197, 24, 0.18), transparent 55%),
+    radial-gradient(60% 50% at 0% 100%, rgba(206, 17, 38, 0.12), transparent 50%),
+    linear-gradient(135deg, #0b6b3a 0%, #085530 55%, #064026 100%);
 }

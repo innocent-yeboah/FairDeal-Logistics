@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { Container } from "@/components/ui/Container";
+import { ProductImage } from "@/components/ui/ProductImage";
 import { AddToCartButton } from "@/components/shop/AddToCartButton";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { ShareButtons } from "@/components/shop/ShareButtons";
@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (!product) notFound();
 
   const media = [...(product.media ?? [])].sort((a, b) => a.position - b.position);
-  const cover = media[0]?.url ?? "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1000&auto=format&fit=crop";
+  const cover = media[0]?.url ?? "/products/placeholder-product.svg";
   const variants = (product.variants ?? []).map((v) => ({
     id: v.id,
     sku: v.sku,
@@ -129,7 +129,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
       <div className="grid gap-10 lg:grid-cols-2">
         <div>
           <div className="relative aspect-square overflow-hidden rounded-xl2 bg-white border border-line">
-            <Image
+            <ProductImage
               src={cover}
               alt={product.name}
               fill
@@ -142,7 +142,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             <div className="mt-3 grid grid-cols-4 gap-2">
               {media.slice(0, 4).map((m) => (
                 <div key={m.id} className="relative aspect-square overflow-hidden rounded-lg border border-line bg-white">
-                  <Image src={m.url} alt={m.alt ?? product.name} fill sizes="15vw" className="object-cover" />
+                  <ProductImage src={m.url} alt={m.alt ?? product.name} fill sizes="15vw" className="object-cover" />
                 </div>
               ))}
             </div>

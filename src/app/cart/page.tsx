@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { useCart } from "@/lib/cart/store";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Card, CardBody } from "@/components/ui/Card";
+import { ProductImage } from "@/components/ui/ProductImage";
 import { useToast } from "@/components/ui/Toast";
 import { formatMoney } from "@/lib/format";
 
@@ -70,9 +70,7 @@ export default function CartPage() {
               <Card key={item.variantId}>
                 <CardBody className="flex gap-4 items-center">
                   <div className="relative h-20 w-20 rounded-lg overflow-hidden bg-cream border border-line flex-shrink-0">
-                    {item.image ? (
-                      <Image src={item.image} alt={item.name} fill sizes="80px" className="object-cover" />
-                    ) : null}
+                    <ProductImage src={item.image} alt={item.name} fill sizes="80px" className="object-cover" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <Link href={`/product/${item.slug}`} className="font-medium text-ink hover:text-brand-700 line-clamp-1">

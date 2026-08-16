@@ -10,8 +10,10 @@ export const SITE = {
 
 export const CATEGORY_SLUGS = [
   { slug: "perfumes", label: "Perfumes" },
+  { slug: "oil-perfumes", label: "Oil Perfumes" },
   { slug: "body-sprays", label: "Body Sprays" },
   { slug: "cosmetics", label: "Cosmetics" },
+  { slug: "skincare", label: "Skincare" },
   { slug: "body-essentials", label: "Body Essentials" },
 ] as const;
 

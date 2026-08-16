@@ -2,27 +2,31 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { SITE, CATEGORY_SLUGS } from "@/lib/constants";
+import { SITE } from "@/lib/constants";
 import { useCart } from "@/lib/cart/store";
 import { cn } from "@/lib/cn";
 import { SearchAutocomplete } from "@/components/site/SearchAutocomplete";
 
-const NAV = [
-  { href: "/shop", label: "Shop" },
+const SHOP_LINKS = [
+  { href: "/shop", label: "Shop all" },
   { href: "/shop?category=perfumes", label: "Perfumes" },
+  { href: "/shop?category=oil-perfumes", label: "Oil Perfumes" },
+  { href: "/shop?category=body-sprays", label: "Body Sprays" },
   { href: "/shop?category=cosmetics", label: "Cosmetics" },
+  { href: "/shop?category=skincare", label: "Skincare" },
   { href: "/shop?category=body-essentials", label: "Body" },
   { href: "/wholesale", label: "Wholesale" },
-];
+] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [shopOpen, setShopOpen] = useState(false);
   const count = useCart((s) => s.count());
   const hydrated = useCart((s) => s.hydrated);
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-cream/85 backdrop-blur">
-      <div className="bg-brand-600 text-white text-xs">
+      <div className="bg-brand-700 text-white text-xs">
         <div className="container flex h-8 items-center justify-between">
           <span>Free delivery on orders over ₵500 in Accra & Kumasi.</span>
           <div className="hidden sm:flex gap-4 opacity-90">
@@ -35,7 +39,7 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-2">
           <span
             aria-hidden
-            className="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 font-display text-lg text-gold-400"
+            className="grid h-9 w-9 place-items-center rounded-lg bg-brand-600 font-display text-lg text-gold-400 ring-2 ring-gold-400/40"
           >
             F
           </span>
@@ -46,18 +50,42 @@ export function SiteHeader() {
         </Link>
 
         <nav className="ml-4 hidden md:flex items-center gap-6 text-sm">
-          {NAV.map((n) => (
-            <Link
-              key={n.href}
-              href={n.href}
-              className="text-ink/80 hover:text-brand-700 transition"
+          <div
+            className="relative"
+            onMouseEnter={() => setShopOpen(true)}
+            onMouseLeave={() => setShopOpen(false)}
+          >
+            <button
+              type="button"
+              className="inline-flex items-center gap-1 text-ink/80 hover:text-brand-700 transition"
+              aria-expanded={shopOpen}
+              aria-haspopup="true"
+              onClick={() => setShopOpen((v) => !v)}
             >
-              {n.label}
-            </Link>
-          ))}
+              Shop
+              <ChevronDown />
+            </button>
+            {shopOpen ? (
+              <div className="absolute left-0 top-full z-50 min-w-[200px] pt-2">
+                <ul className="rounded-xl border border-line bg-white py-2 shadow-soft">
+                  {SHOP_LINKS.map((n) => (
+                    <li key={n.href}>
+                      <Link
+                        href={n.href}
+                        className="block px-4 py-2 text-ink/80 hover:bg-cream hover:text-brand-700"
+                        onClick={() => setShopOpen(false)}
+                      >
+                        {n.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
         </nav>
 
-        <div className="ml-auto hidden lg:flex flex-1 max-w-md">
+        <div className="ml-auto hidden md:flex flex-1 max-w-md">
           <SearchAutocomplete />
         </div>
 
@@ -70,7 +98,7 @@ export function SiteHeader() {
           </Link>
           <Link
             href="/cart"
-            className="relative inline-flex items-center gap-1.5 rounded-full bg-ink text-white px-3.5 h-10 text-sm hover:bg-ink/90"
+            className="relative inline-flex items-center gap-1.5 rounded-full bg-brand-700 text-white px-3.5 h-10 text-sm hover:bg-brand-800"
           >
             <BagIcon />
             <span className="hidden sm:inline">Cart</span>
@@ -97,22 +125,23 @@ export function SiteHeader() {
 
       {open ? (
         <div className="md:hidden border-t border-line bg-white">
-          <div className="container py-3 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            {CATEGORY_SLUGS.map((c) => (
+          <div className="container py-3 flex flex-col text-sm">
+            <div className="pb-3">
+              <SearchAutocomplete />
+            </div>
+            <p className="pt-1 pb-1 text-[11px] font-semibold uppercase tracking-wider text-ink/50">Shop</p>
+            {SHOP_LINKS.map((n) => (
               <Link
-                key={c.slug}
-                href={`/shop?category=${c.slug}`}
+                key={n.href}
+                href={n.href}
                 className="py-2 text-ink/80"
                 onClick={() => setOpen(false)}
               >
-                {c.label}
+                {n.label}
               </Link>
             ))}
-            <Link href="/account" className="py-2 text-ink/80" onClick={() => setOpen(false)}>
+            <Link href="/account" className="py-2 text-ink/80 border-t border-line mt-1" onClick={() => setOpen(false)}>
               Account
-            </Link>
-            <Link href="/wholesale" className="py-2 text-ink/80" onClick={() => setOpen(false)}>
-              Wholesale
             </Link>
           </div>
         </div>
@@ -134,6 +163,13 @@ function UserIcon() {
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <circle cx="12" cy="8" r="4" />
       <path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6" />
+    </svg>
+  );
+}
+function ChevronDown() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

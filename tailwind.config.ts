@@ -1,5 +1,12 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Fair Deal brand palette — Ghana × Nigeria × China, blended for commerce:
+ * - Forest green (Ghana / Nigeria) as primary
+ * - Warm gold (Ghana star / China) as premium accent
+ * - Crimson red (Ghana / China) for urgency & deals
+ * - Clean ivory white (Nigeria) for surfaces
+ */
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
@@ -16,61 +23,61 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Primary — Deep Navy (#1A1A2E at 600)
+        // Primary — Forest green (Ghana / Nigeria)
         brand: {
-          50: "#F2F2F7",
-          100: "#DEDEEB",
-          200: "#B9B9D1",
-          300: "#8E8EB0",
-          400: "#63638D",
-          500: "#3B3B60",
-          600: "#1A1A2E",
-          700: "#141423",
-          800: "#0E0E19",
-          900: "#07070D",
+          50: "#F1F8F4",
+          100: "#D9EEE2",
+          200: "#B0DCC4",
+          300: "#7BC29C",
+          400: "#429B6E",
+          500: "#1F7A4D",
+          600: "#0B6B3A",
+          700: "#085530",
+          800: "#064026",
+          900: "#042A19",
         },
-        // Secondary — Gold (#D4AF37 at 400)
+        // Secondary — Shared gold (Ghana / China)
         gold: {
-          50: "#FBF7E8",
-          100: "#F4EAC2",
-          200: "#EAD989",
-          300: "#DFC65C",
-          400: "#D4AF37",
-          500: "#B3922B",
-          600: "#8C7221",
-          700: "#665317",
-          800: "#40340E",
-          900: "#201A07",
+          50: "#FFF9E8",
+          100: "#FFF0C2",
+          200: "#FFE08A",
+          300: "#FCD34D",
+          400: "#F5C518",
+          500: "#D4A017",
+          600: "#A87B12",
+          700: "#7A5A0E",
+          800: "#4D3909",
+          900: "#2A1F05",
         },
-        // Accent — Warm Terracotta (#E8A87C at 300)
+        // Accent — Crimson (Ghana / China), used for deals & emphasis
         terracotta: {
-          50: "#FDF6F0",
-          100: "#F8E4D3",
-          200: "#F0C6A8",
-          300: "#E8A87C",
-          400: "#DE8F5C",
-          500: "#D27741",
+          50: "#FEF2F2",
+          100: "#FCE4E4",
+          200: "#F7B6B6",
+          300: "#EF7A7A",
+          400: "#E23B3B",
+          500: "#CE1126",
         },
-        // Errors / destructive
+        // Errors / destructive (aligned with crimson family)
         rose: {
-          50: "#FDF2F2",
-          100: "#FAE0E0",
-          200: "#F4A9A8",
-          300: "#EE8180",
-          400: "#E45F5E",
-          500: "#C74544",
+          50: "#FEF2F2",
+          100: "#FCE4E4",
+          200: "#F7B6B6",
+          300: "#EF7A7A",
+          400: "#E23B3B",
+          500: "#B91C1C",
         },
-        ink: "#1A1A1A",
-        cream: "#F7F7F9",
-        line: "#E5E5EA",
+        ink: "#122016",
+        cream: "#F7F8F4",
+        line: "#DCE5DE",
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 1px 2px rgba(26,26,46,0.05), 0 8px 24px rgba(26,26,46,0.07)",
-        pop: "0 20px 40px -20px rgba(26, 26, 46, 0.45)",
+        soft: "0 1px 2px rgba(11,107,58,0.06), 0 8px 24px rgba(11,107,58,0.08)",
+        pop: "0 20px 40px -20px rgba(11, 107, 58, 0.4)",
       },
       borderRadius: {
         xl2: "1.25rem",

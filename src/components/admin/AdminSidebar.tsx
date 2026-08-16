@@ -19,10 +19,10 @@ const LINKS = [
 export function AdminSidebar() {
   const pathname = usePathname();
   return (
-    <aside className="w-60 shrink-0 min-h-screen bg-ink text-white/85 flex flex-col">
+    <aside className="w-60 shrink-0 min-h-screen bg-brand-900 text-white/85 flex flex-col">
       <div className="h-14 flex items-center px-5 border-b border-white/10">
         <Link href="/" className="flex items-center gap-2">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-gold-400 text-brand-700 font-display">
+          <span className="grid h-8 w-8 place-items-center rounded-md bg-gold-400 text-brand-800 font-display">
             F
           </span>
           <div className="leading-tight">

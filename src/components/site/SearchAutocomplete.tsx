@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { formatMoney } from "@/lib/format";
+import { ProductImage } from "@/components/ui/ProductImage";
 
 interface Result {
   slug: string;
@@ -89,9 +89,7 @@ export function SearchAutocomplete() {
                   className="flex items-center gap-3 px-4 py-2.5 hover:bg-cream"
                 >
                   <div className="relative h-10 w-10 overflow-hidden rounded-md bg-cream border border-line flex-shrink-0">
-                    {r.image ? (
-                      <Image src={r.image} alt="" fill sizes="40px" className="object-cover" />
-                    ) : null}
+                    <ProductImage src={r.image} alt="" fill sizes="40px" className="object-cover" />
                   </div>
                   <span className="flex-1 truncate text-sm text-ink">{r.name}</span>
                   <span className="text-sm font-medium text-gold-600">{formatMoney(r.price)}</span>

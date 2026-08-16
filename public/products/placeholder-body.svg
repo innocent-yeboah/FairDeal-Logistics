@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF9E8"/>
+      <stop offset="100%" stop-color="#FFE08A"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#g)"/>
+  <rect x="300" y="180" width="200" height="400" rx="40" fill="#F7F8F4" stroke="#D4A017" stroke-width="8"/>
+  <rect x="340" y="240" width="120" height="220" rx="16" fill="#0B6B3A"/>
+  <text x="400" y="680" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#122016">Body Care</text>
+</svg>

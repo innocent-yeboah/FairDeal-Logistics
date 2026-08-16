@@ -15,7 +15,7 @@ export default function NotFound() {
         <Button href="/shop" variant="outline">Browse the shop</Button>
       </div>
       <p className="mt-6 text-xs text-ink/50">
-        Need help? <Link href="/wholesale" className="text-brand-700">Contact us</Link>
+        Need help? <Link href="/contact" className="text-brand-700">Contact us</Link>
       </p>
     </Container>
   );

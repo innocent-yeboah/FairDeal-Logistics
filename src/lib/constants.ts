@@ -1,7 +1,7 @@
 export const SITE = {
-  name: process.env.NEXT_PUBLIC_SITE_NAME ?? "Fair Deal Logistics Gh",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  currency: process.env.NEXT_PUBLIC_CURRENCY ?? "GHS",
+  name: process.env.NEXT_PUBLIC_SITE_NAME?.trim() || "Fair Deal Logistics Gh",
+  url: process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000",
+  currency: process.env.NEXT_PUBLIC_CURRENCY?.trim() || "GHS",
   currencySymbol: "₵",
   supportEmail: "hello@fairdealgh.com",
   supportPhone: "+233 30 000 0000",

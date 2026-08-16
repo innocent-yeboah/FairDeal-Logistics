@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 
 /**
  * Refreshes the Supabase session on every request and enforces
@@ -19,8 +19,8 @@ export async function middleware(request: NextRequest) {
   const supabase = createServerClient(supabaseUrl, supabaseKey, {
     cookies: {
       getAll: () => request.cookies.getAll(),
-      setAll: (cookies) => {
-        cookies.forEach(({ name, value, options }) => {
+      setAll: (cookiesToSet: { name: string; value: string; options: CookieOptions }[]) => {
+        cookiesToSet.forEach(({ name, value, options }) => {
           response.cookies.set({ name, value, ...options });
         });
       },

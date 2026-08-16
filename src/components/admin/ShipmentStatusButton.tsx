@@ -18,25 +18,25 @@ export function ShipmentStatusButton({ shipmentId, currentStatus }: { shipmentId
   const [busy, setBusy] = useState(false);
   const toast = useToast();
   const router = useRouter();
-  const next = NEXT[currentStatus];
-
-  if (!next) return <span className="text-xs text-ink/40">Complete</span>;
+  const maybeNext = NEXT[currentStatus];
+  if (!maybeNext) return <span className="text-xs text-ink/40">Complete</span>;
+  const nextStatus: string = maybeNext;
 
   async function apply() {
     setBusy(true);
     const supabase = createSupabaseBrowserClient();
     const now = new Date().toISOString();
     const update: Record<string, string | null> = {
-      status: next,
+      status: nextStatus,
       updated_at: now,
     };
-    if (next === "delivered") update.delivered_at = now;
+    if (nextStatus === "delivered") update.delivered_at = now;
     const { error } = await supabase.from("shipments").update(update).eq("id", shipmentId);
     if (!error) {
       await supabase.from("shipment_events").insert({
         shipment_id: shipmentId,
-        status: next,
-        note: `Advanced from ${currentStatus} → ${next}`,
+        status: nextStatus,
+        note: `Advanced from ${currentStatus} → ${nextStatus}`,
       });
     }
     setBusy(false);
@@ -44,13 +44,13 @@ export function ShipmentStatusButton({ shipmentId, currentStatus }: { shipmentId
       toast.push(error.message, "error");
       return;
     }
-    toast.push(`Marked as ${SHIPMENT_STATUS_LABELS[next] ?? next}`, "success");
+    toast.push(`Marked as ${SHIPMENT_STATUS_LABELS[nextStatus] ?? nextStatus}`, "success");
     router.refresh();
   }
 
   return (
     <Button size="sm" variant="outline" onClick={apply} disabled={busy}>
-      {busy ? "…" : `Mark ${SHIPMENT_STATUS_LABELS[next] ?? next}`}
+      {busy ? "…" : `Mark ${SHIPMENT_STATUS_LABELS[nextStatus] ?? nextStatus}`}
     </Button>
   );
 }

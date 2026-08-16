@@ -5,11 +5,12 @@ import { notifyCustomer } from "@/lib/notify";
 export const dynamic = "force-dynamic";
 
 /**
- * Abandoned-cart recovery. Call hourly from Vercel Cron:
+ * Abandoned-cart recovery. Vercel Hobby allows one cron per day
+ * (08:00 UTC). Pro can switch vercel.json back to hourly.
  *   GET /api/cron/abandoned-cart
  *   Authorization: Bearer $CRON_SECRET
  *
- * Cadence: 1h, 24h, 48h (recovery_emails_sent 0 → 1 → 2).
+ * Cadence: 1h, 24h, 48h windows (recovery_emails_sent 0 → 1 → 2).
  */
 export async function GET(request: Request) {
   const secret = process.env.CRON_SECRET;

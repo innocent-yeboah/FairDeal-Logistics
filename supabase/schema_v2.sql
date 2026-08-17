@@ -96,7 +96,7 @@ create table if not exists public.settings (
 insert into public.settings (id, data) values (1, jsonb_build_object(
   'company_name', 'Fair Deal Logistics Gh',
   'support_email', 'hello@fairdealgh.com',
-  'support_phone', '+233 30 000 0000',
+  'support_phone', '+233 53 330 4602',
   'address', 'Accra, Ghana',
   'currency', 'GHS',
   'tax_rate_percent', 0,

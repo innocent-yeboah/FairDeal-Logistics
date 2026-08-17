@@ -3,6 +3,7 @@ import { SITE } from "@/lib/constants";
 import { ToastProvider } from "@/components/ui/Toast";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import "./globals.css";
 
 const orgJsonLd = {
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <WhatsAppFloat />
         </ToastProvider>
       </body>
     </html>

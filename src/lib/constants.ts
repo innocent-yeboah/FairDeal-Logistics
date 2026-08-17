@@ -4,7 +4,9 @@ export const SITE = {
   currency: process.env.NEXT_PUBLIC_CURRENCY?.trim() || "GHS",
   currencySymbol: "₵",
   supportEmail: "hello@fairdealgh.com",
-  supportPhone: "+233 30 000 0000",
+  supportPhone: "+233 53 330 4602",
+  /** WhatsApp wa.me digits (no + or spaces). */
+  whatsapp: "233533304602",
   tagline: "Authentic products. Trusted quality. Nationwide delivery.",
 } as const;
 
